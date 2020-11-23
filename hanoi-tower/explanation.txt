@@ -1,0 +1,24 @@
+Problem
+The aim of the hanoi tower problem is to move "n" disks from a starting pole to a destination pole given certain constraints.
+
+Constraints
+-Larger disks can not be placed on smaller disks
+-Only one disk can be moved at a time
+
+Solution
+Given 3 poles(A,B,C) and n disks (1, 2,.., n-1, n). Where A is the source pole, B is the auxiliary and C is the destination pole.
+To move all disks within the given constraints, we first need to move n-1 disks to the auxiliary pole.
+If n-1 isn't equal to 1 then the constraints still apply, and using n-1 as a reference, we need to move (n-1)-1 disks to another pole temporarily
+and then move n-1 to the auxiliary pole and place (n-1)-1 on top of that. This process is repeated until the disk n is the only disk in the pole A
+and then it is moved. And finally, the process is reversed to place all other disks on the destination pole on top of disk n.
+
+From the above explanation, this problem can be defined recursively.
+Each time we need to move a disk that is not the top disk, a recursive algorithm needs to be called for each disk above it
+to move that disk from it's source pole to an auxiliary pole.
+When the disk below is finally moved, then the algorithm is called again with swapped parameters to reverse the directions of movement
+of the disks until all smaller disks are placed on top of the largest in the destination pole.
+
+My solution uses arrays as poles that are initialised with 3 disks when no parameters are passed to the constructor and
+initialised with the corresponding number of disks when an integer argument is passed to the constructor.
+The first pole is always initialised with the numbers 1 to n where n is the number 3 or an
+integer passed as a parameter in the constructor. While the other two poles(arrays) are initialised with 0's.
